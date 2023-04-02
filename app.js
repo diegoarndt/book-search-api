@@ -6,7 +6,7 @@ const limit = parseInt(process.argv[4]) || 5; // Use 5 as the default number of 
 
 // Check if a search term was provided
 if (!searchTerm) {
-  console.log('Please provide a search term.');
+  console.log('\x1b[33m%s\x1b[0m', '\nPlease provide a search term.');
   process.exit(1);
 }
 
@@ -43,7 +43,7 @@ axios
       .map((doc) => doc.title);
       
     if (titles.length > 0) {
-        
+
       // If the number of titles found is less than the requested limit, apologize and show the actual number of results found
       if (titles.length < limit) {
         console.log(
