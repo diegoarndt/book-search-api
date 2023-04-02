@@ -37,12 +37,13 @@ axios
     const data = response.data;
 
     // If there are search results, filter by year and display/save the titles
-    if (data.docs.length > 0) {
-      const titles = data.docs
-        .filter((doc) => doc.publish_year && doc.publish_year.includes(year))
-        .slice(0, limit)
-        .map((doc) => doc.title);
-
+    const titles = data.docs
+      .filter((doc) => doc.publish_year && doc.publish_year.includes(year))
+      .slice(0, limit)
+      .map((doc) => doc.title);
+      
+    if (titles.length > 0) {
+        
       // If the number of titles found is less than the requested limit, apologize and show the actual number of results found
       if (titles.length < limit) {
         console.log(
@@ -75,7 +76,7 @@ axios
       );
     } else {
       // If no search results were found, apologize
-      console.log('Sorry. No search results found.');
+      console.log('\x1b[31m%s\x1b[0m', 'Sorry. No search results found.');
     }
   })
   .catch((error) => {
